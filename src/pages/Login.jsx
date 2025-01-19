@@ -1,21 +1,35 @@
 // src/pages/LoginPage.js
 import React ,{useState} from "react";
-import {Container,Paper,Typography,TextField,Button,Stack,Avatar,IconButton} from "@mui/material";
+import {Container,Paper,Typography,TextField,Button,Stack,Avatar,IconButton,Chip} from "@mui/material";
 import {CameraAlt as  CameraAltIcon} from "@mui/icons-material";
 import {VisuallyHiddenInput}from "../components/styles/StyledComponents";
 import { useFileHandler, useInputValidation,useStrongPassword } from "6pp";
 import { usernameValidator } from "../utils/validators";
 const Login=()=>{
   const [isLogin,setIsLogin]=useState(true);
+  const [skillList, setSkillList] = useState([]); // For storing user's skills
+  const [currentSkill, setCurrentSkill] = useState(""); // Current skill being entered
 
   const name=useInputValidation("");
   const username=useInputValidation("",usernameValidator);
-  const skills=useInputValidation("");
+  
   const password=useStrongPassword();
   const avatar=useFileHandler("single");
 
   const handleLogin=(e)=>{e.preventDefault();}
   const handleSignUp=(e)=>{e.preventDefault();}
+  const handleAddSkill = (e) => {
+     e.preventDefault();
+     if (currentSkill.trim() && !skillList.includes(currentSkill)) {
+      setSkillList([...skillList, currentSkill]); // Add skill to the list
+      setCurrentSkill(""); // Clear the input field
+    }
+ };
+ const handleDeleteSkill = (skillToDelete) => {
+   setSkillList(skillList.filter((s) => s !== skillToDelete)); // Remove skill from the list
+ };
+
+
 
    return (<Container component={"main"} maxWidth="xs"
    sx={{
@@ -182,12 +196,28 @@ const Login=()=>{
       <TextField  
          required 
          fullWidth 
-         label="Skills" 
+         label="Add a Skill" 
          margin="normal" 
          variant="outlined"
-         value={skills.value}
-         onChange={skills.changeHandler}
+         value={currentSkill}
+         onChange={(e) => setCurrentSkill(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handleAddSkill(e);
+          }
+        }}
          />
+
+         <Stack direction="row" spacing={1} flexWrap="wrap" mt={1}>
+                {skillList.map((s, index) => (
+                  <Chip
+                    key={index}
+                    label={s}
+                    onDelete={() => handleDeleteSkill(s)}
+                    color="primary"
+                  />
+                ))}
+              </Stack>
 
          <TextField  
          required 
