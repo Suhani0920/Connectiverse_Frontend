@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Button } from "@mui/material";
+import { Container, Typography, Button, Box } from "@mui/material";
 
 const NotFoundPage = () => {
   return (
@@ -7,58 +7,100 @@ const NotFoundPage = () => {
       component="main"
       sx={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         flexDirection: "column",
-        backgroundColor: "#FAF3E0", // Beige background
+        alignItems: "center",
+        justifyContent: "center",
         textAlign: "center",
-        height: "100vh", // Full height
-        width: "100vw", // Full viewport width
-        padding: 0, // Remove default padding
-        margin: 0, // Remove default margin
-        overflow: "hidden", // Prevent any overflow
+        height: "100vh",
+        backgroundColor: "#ffffff", // White background
+        padding: 0,
       }}
     >
-      <Typography
-        variant="h2"
+      {/* Logo (Top Left Placeholder) */}
+      <Box
         sx={{
-          color: "#754043", // Updated color for the "Oops!" text
+          position: "absolute",
+          top: "1rem",
+          left: "1rem",
           fontWeight: "bold",
-          fontSize: { xs: "3rem", sm: "4rem", md: "5rem" }, // Responsive font size
-          animation: "fadeIn 1s ease-in-out",
+          fontSize: "1.5rem",
+          color: "#000000", // Black logo
+        }}
+      >
+       
+      </Box>
+
+      {/* 404 Text */}
+      <Typography
+        variant="h1"
+        sx={{
+          fontSize: { xs: "6rem", sm: "8rem" },
+          fontWeight: "bold",
+          color: "#000F28", // Dark navy blue
+        }}
+      >
+        4
+        <Box
+          component="span"
+          sx={{
+            fontSize: { xs: "5rem", sm: "7rem" },
+            color: "#000F28",
+            fontWeight: "normal",
+            marginX: "0.5rem",
+          }}
+        >
+          {"{}"}
+        </Box>
+        4
+      </Typography>
+
+      {/* Oops Text */}
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: "bold",
+          color: "#000F28",
           marginBottom: "1rem",
         }}
       >
-        Oops! Page Not Found
+        OOPS!
       </Typography>
+
+      {/* Subtext */}
       <Typography
         variant="body1"
         sx={{
-          color: "#50364E", // Dark pinkish color for the text
-          fontSize: { xs: "1.2rem", sm: "1.5rem" }, // Responsive font size
+          fontSize: "1rem",
+          color: "#666666", // Light gray text
           marginBottom: "2rem",
-          fontStyle: "italic",
-          maxWidth: "600px",
-          marginX: "auto",
         }}
       >
-        Looks like you’re lost. The page you are looking for does not exist. But don’t worry, you can always go back to the homepage and start fresh!
+        SOMETHING WENT WRONG
+        <br />
+        GO BACK TO{" "}
+        <Box
+          component="span"
+          sx={{ color: "#735DA5", fontWeight: "bold" }} // Green for "HOME"
+        >
+          HOME
+        </Box>
       </Typography>
+
+      {/* Button */}
       <Button
-        sx={{
-          backgroundColor: "#50364E", // Dark pink button
-          color: "white",
-          "&:hover": { backgroundColor: "#40243C" },
-          padding: "1rem 2.5rem",
-          borderRadius: "50px",
-          fontWeight: "bold",
-          fontSize: "1.2rem",
-          animation: "pulse 2s infinite", // Animation for button
-        }}
         variant="contained"
-        onClick={() => window.location.href = "/"} // Go to homepage
+        sx={{
+          backgroundColor: "#735DA5", // purple background
+          color: "#ffffff",
+          fontWeight: "bold",
+          textTransform: "none",
+          paddingX: "2rem",
+          paddingY: "0.5rem",
+          
+        }}
+        onClick={() => (window.location.href = "/")}
       >
-        Go Home
+        Go to Homepage
       </Button>
     </Container>
   );

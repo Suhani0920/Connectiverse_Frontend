@@ -6,7 +6,10 @@ import { HelmetProvider } from 'react-helmet-async';
 // Create the root and render the app
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <HelmetProvider>
     <CssBaseline /> {/* Include CssBaseline here */}
     <App />
+    </HelmetProvider>
   </StrictMode>
+  
 );
