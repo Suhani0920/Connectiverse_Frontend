@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import { Grid, Box, IconButton, Tooltip, Backdrop } from "@mui/material";
+import { Grid, IconButton, Tooltip, Backdrop } from "@mui/material";
 import {
   Search as SearchIcon,
   Add as AddIcon,
@@ -7,139 +7,109 @@ import {
   Notifications as NotificationsIcon,
   Logout as LogoutIcon,
 } from "@mui/icons-material";
-import { purple } from "../../constants/color";
 import { useNavigate } from "react-router-dom";
 
 const AppLayout = (WrappedComponent) => {
   return (props) => {
-    const [isMobile, setIsMobile] = useState(false);
-    const [selectedSection, setSelectedSection] = useState(""); // To track which section is selected
-
+    const [selectedSection, setSelectedSection] = useState(""); // Track selected section
     const navigate = useNavigate();
-
-    const handleMobile = () => {
-      setIsMobile((prev) => !prev);
-    };
 
     const handleIconClick = (section) => {
       setSelectedSection(section);
     };
 
     const logoutHandler = () => {
-      // Add your logout logic here
+      console.log("Logging out...");
     };
 
     return (
-      <>
-        <Grid container height="calc(103vh)" spacing={"1rem"}>
-          {/* First Column (Sidebar with Icons) */}
-          <Grid
-            item
-            xs={1}
-            sm={1}
-            md={1}
-            sx={{
-              backgroundColor: "#735DA5",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "1rem",
-            }}
-            height="100%"
-          >
-            <IconBtn
-              title={"Search"}
-              icon={<SearchIcon />}
-              onClick={() => handleIconClick("search")}
-            />
-            <IconBtn
-              title={"New Group"}
-              icon={<AddIcon />}
-              onClick={() => handleIconClick("newGroup")}
-            />
-            <IconBtn
-              title={"Manage Groups"}
-              icon={<GroupIcon />}
-              onClick={() => handleIconClick("group")}
-            />
-            <IconBtn
-              title={"Notifications"}
-              icon={<NotificationsIcon />}
-              onClick={() => handleIconClick("notifications")}
-            />
-            <IconBtn
-              title={"Logout"}
-              icon={<LogoutIcon />}
-              onClick={logoutHandler}
-            />
-          </Grid>
-
-          {/* Second Column (Content based on selected icon) */}
-          <Grid
-            item
-            xs={4}
-            sm={3}
-            md={3}
-            sx={{
-              backgroundColor: "#CDC1FF",
-              padding: "1rem",
-            }}
-            height="100%"
-          >
-            {selectedSection === "search" && (
-              <Suspense fallback={<Backdrop open />}>
-                /* Your Search Component here */
-              </Suspense>
-            )}
-            {selectedSection === "newGroup" && (
-              <Suspense fallback={<div>Loading...</div>}>
-                /* New Group Component here */
-              </Suspense>
-            )}
-            {selectedSection === "group" && (
-              <Suspense fallback={<div>Loading...</div>}>
-                /* Group Component here */
-              </Suspense>
-            )}
-            {selectedSection === "notifications" && (
-              <Suspense fallback={<div>Loading...</div>}>
-                /* Notification Component here */
-              </Suspense>
-            )}
-          </Grid>
-
-          {/* Third Column (Chat Details) */}
-          <Grid
-            item
-            xs={7}
-            sm={8}
-            md={8}
-            sx={{
-              backgroundColor: "#F8F7FF",
-              padding: "1rem",
-            }}
-            height="100%"
-          >
-            {selectedSection === "chat" && (
-              <Suspense fallback={<div>Loading...</div>}>
-                /* Your Chat Details Component here */
-              </Suspense>
-            )}
-          </Grid>
+      <Grid container height="100vh" spacing={0}>
+        {/* First Column (Sidebar with Icons) */}
+        <Grid
+          item
+          xs={1}
+          sx={{
+            backgroundColor: "#735DA5",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "2rem 0",
+            gap: "2rem",
+          }}
+        >
+          <IconBtn
+            title="Search"
+            icon={<SearchIcon />}
+            onClick={() => handleIconClick("search")}
+          />
+          <IconBtn
+            title="New Group"
+            icon={<AddIcon />}
+            onClick={() => handleIconClick("newGroup")}
+          />
+          <IconBtn
+            title="Manage Groups"
+            icon={<GroupIcon />}
+            onClick={() => handleIconClick("group")}
+          />
+          <IconBtn
+            title="Notifications"
+            icon={<NotificationsIcon />}
+            onClick={() => handleIconClick("notifications")}
+          />
+          <IconBtn
+            title="Logout"
+            icon={<LogoutIcon />}
+            onClick={logoutHandler}
+          />
         </Grid>
-      </>
+
+        {/* Second Column (Dynamic Components) */}
+        <Grid
+          item
+          xs={3}
+          sx={{
+            backgroundColor: "#CDC1FF",
+            padding: "1rem",
+          }}
+        >
+          <Suspense fallback={<Backdrop open />}>
+            {selectedSection === "search" && <div>Search Component</div>}
+            {selectedSection === "newGroup" && <div>New Group Component</div>}
+            {selectedSection === "group" && <div>Group Component</div>}
+            {selectedSection === "notifications" && <div>Notification Component</div>}
+          </Suspense>
+        </Grid>
+
+        {/* Third Column (Chat Details - WrappedComponent renders here) */}
+        <Grid
+          item
+          xs={8}
+          sx={{
+            backgroundColor: "#F8F7FF",
+            padding: "1rem",
+          }}
+        >
+          <WrappedComponent {...props} />
+        </Grid>
+      </Grid>
     );
   };
 };
 
-const IconBtn = ({ title, icon, onClick }) => {
-  return (
-    <Tooltip title={title}>
-      <IconButton color="inherit" size="large" onClick={onClick}>
-        {icon}
-      </IconButton>
-    </Tooltip>
-  );
-};
+// Reusable Icon Button
+const IconBtn = ({ title, icon, onClick }) => (
+  <Tooltip title={title} placement="right">
+    <IconButton
+      onClick={onClick}
+      sx={{
+        color: "white",
+        "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.1)" },
+      }}
+    >
+      {icon}
+    </IconButton>
+  </Tooltip>
+);
 
 export default AppLayout;
