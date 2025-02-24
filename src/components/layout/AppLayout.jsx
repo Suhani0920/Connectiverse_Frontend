@@ -6,6 +6,7 @@ import {
   Group as GroupIcon,
   Notifications as NotificationsIcon,
   Logout as LogoutIcon,
+  AccountCircle as ProfileIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -37,6 +38,7 @@ const AppLayout = (WrappedComponent) => {
             gap: "2rem",
           }}
         >
+         
           <IconBtn
             title="Search"
             icon={<SearchIcon />}
@@ -57,6 +59,11 @@ const AppLayout = (WrappedComponent) => {
             icon={<NotificationsIcon />}
             onClick={() => handleIconClick("notifications")}
           />
+           <IconBtn
+            title="Profile"
+            icon={<ProfileIcon />}
+            onClick={() => handleIconClick("profile")}
+          />
           <IconBtn
             title="Logout"
             icon={<LogoutIcon />}
@@ -74,10 +81,12 @@ const AppLayout = (WrappedComponent) => {
           }}
         >
           <Suspense fallback={<Backdrop open />}>
+            
             {selectedSection === "search" && <div>Search Component</div>}
             {selectedSection === "newGroup" && <div>New Group Component</div>}
             {selectedSection === "group" && <div>Group Component</div>}
             {selectedSection === "notifications" && <div>Notification Component</div>}
+            {selectedSection === "profile" && <div>Profile Component</div>}
           </Suspense>
         </Grid>
 

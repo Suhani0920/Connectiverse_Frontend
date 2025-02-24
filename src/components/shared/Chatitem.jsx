@@ -33,9 +33,7 @@ import {Stack, Typography} from "@mui/material"
       borderBottom:"1px solid #f0f0f0",
       position:"relative",
     }}>
-     {
-
-     }
+     <AvatarCard avatar={avatar}/>
      <Stack>
       <Typography>{name}</Typography>
       {
