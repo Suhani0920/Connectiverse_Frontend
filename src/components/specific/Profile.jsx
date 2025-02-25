@@ -47,7 +47,7 @@ const ProfileCard=({text,Icon,heading})=>(
     color={"white"}
     textAlign={"center"}
     >
-     {Icon && <Icon/>}
+     {Icon && React.isValidElement(Icon) && Icon}
      <Stack spacing={"0.5rem"}>
        <Typography variant="body1">{heading}</Typography>
        <Typography  color={"gray"} variant="caption">{heading}</Typography>

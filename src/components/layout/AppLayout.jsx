@@ -9,6 +9,12 @@ import {
   AccountCircle as ProfileIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import ChatList from "../specific/ChatList";
+import NewGroup from "../specific/NewGroup";
+import Notifications from "../specific/Notifications";
+import Profile from "../specific/Profile";
+import Search from "../specific/Search";
+
 
 const AppLayout = (WrappedComponent) => {
   return (props) => {
@@ -82,11 +88,11 @@ const AppLayout = (WrappedComponent) => {
         >
           <Suspense fallback={<Backdrop open />}>
             
-            {selectedSection === "search" && <div>Search Component</div>}
-            {selectedSection === "newGroup" && <div>New Group Component</div>}
-            {selectedSection === "group" && <div>Group Component</div>}
-            {selectedSection === "notifications" && <div>Notification Component</div>}
-            {selectedSection === "profile" && <div>Profile Component</div>}
+            {selectedSection === "search" && <Search/>}
+            {selectedSection === "newGroup" && <NewGroup/>}
+            {selectedSection === "group" && <ChatList/>}
+            {selectedSection === "notifications" && <Notifications/>}
+            {selectedSection === "profile" && <Profile/>}
           </Suspense>
         </Grid>
 
@@ -96,10 +102,16 @@ const AppLayout = (WrappedComponent) => {
           xs={8}
           sx={{
             backgroundColor: "#F8F7FF",
-            padding: "1rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <WrappedComponent {...props} />
+          <img 
+            src="https://tenor.com/bvRpn.gif" 
+            alt="GIF Animation"
+            style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+          />
         </Grid>
       </Grid>
     );
