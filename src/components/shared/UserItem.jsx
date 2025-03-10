@@ -4,7 +4,9 @@ import {Add as AddIcon} from '@mui/icons-material'
 
 const UserItem = ({user,handler,handlerIsLoading}) => {
   const {name,_id,avatar}=user
-    return (
+    
+  
+  return (
         <ListItem >
        <Stack 
          direction={"row"} 
@@ -38,7 +40,7 @@ const UserItem = ({user,handler,handlerIsLoading}) => {
                 bgcolor:"primary.dark",
               },
         }}
-        onClick={()=>handler(_id)} disabled={handlerIsLoading}>
+        onClick={()=>handler(user._id)} disabled={handlerIsLoading}>
             <AddIcon />
         </IconButton>
        </Stack>

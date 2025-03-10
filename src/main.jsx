@@ -9,7 +9,7 @@ createRoot(document.getElementById('root')).render(
     <HelmetProvider>
     <CssBaseline /> {/* Include CssBaseline here */}
    
-    <div onContextMenu={e=>e.preventDefault()}>
+    <div/* onContextMenu={e=>e.preventDefault()}*/>
     <App />
     </div>
     </HelmetProvider>

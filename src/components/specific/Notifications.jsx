@@ -1,7 +1,6 @@
-import React ,{memo}from 'react'
-import { Dialog, DialogTitle, InputAdornment, List, Stack,TextField, Typography,ListItem ,Avatar, Button} from '@mui/material'
-import { sampleNotifications } from '../../constants/sampleData'
-import {Search as SearchIcon} from "@mui/icons-material";
+import { Avatar, Button, DialogTitle, List, ListItem, Stack, Typography } from '@mui/material';
+import React, { memo } from 'react';
+import { sampleNotifications } from '../../constants/sampleData';
 const Notifications = () => {
  
  const friendRequesthandler=({_id,accept})=>{
