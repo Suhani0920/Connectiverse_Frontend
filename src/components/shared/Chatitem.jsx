@@ -13,7 +13,7 @@ import AvatarCard from './AvatarCard';
   isOnline,
   newMessageAlert,
   index=0,
-  handleDeleteChatOpen,
+  handleDeleteChat,
  }
  ) => {
   return (
@@ -22,7 +22,7 @@ import AvatarCard from './AvatarCard';
       padding:"0",
     }} 
     to={`/chat/${_id}`} 
-    onContextMenu={(e)=>handleDeleteChatOpen(e,_id,groupChat)}
+    onContextMenu={(e)=>handleDeleteChat(e,_id,groupChat)}
     >
     <div 
     style={{
@@ -45,9 +45,9 @@ import AvatarCard from './AvatarCard';
       }
      </Stack>
 
-     isOnline && <Box sx={{
-       width: 10, height: 10, borderRadius: "50%", backgroundColor: "green"   
-     }} />
+     {isOnline && (
+  <Box sx={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "green" }} />
+)}
 
     </div>
     </Link>

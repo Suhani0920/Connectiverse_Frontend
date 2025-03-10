@@ -8,16 +8,21 @@ import {
   Logout as LogoutIcon,
   AccountCircle as ProfileIcon,
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate ,useParams } from "react-router-dom";
 import ChatList from "../specific/ChatList";
 import NewGroup from "../specific/NewGroup";
 import Notifications from "../specific/Notifications";
 import Profile from "../specific/Profile";
 import Search from "../specific/Search";
+import {sampleChats} from "../../constants/sampleData";
 
 
 const AppLayout = (WrappedComponent) => {
   return (props) => {
+    
+    const { chatId } = useParams();
+
     const [selectedSection, setSelectedSection] = useState(""); // Track selected section
     const navigate = useNavigate();
 
@@ -28,6 +33,12 @@ const AppLayout = (WrappedComponent) => {
     const logoutHandler = () => {
       console.log("Logging out...");
     };
+
+    const handleDeleteChat = (e,Id,groupChat) => {
+
+      e.preventDefault();
+      console.log("Deleting Chat...",_id ,groupChat);
+    }
 
     return (
       <Grid container height="100vh" spacing={0}>
@@ -90,7 +101,9 @@ const AppLayout = (WrappedComponent) => {
             
             {selectedSection === "search" && <Search/>}
             {selectedSection === "newGroup" && <NewGroup/>}
-            {selectedSection === "group" && <ChatList/>}
+            {selectedSection === "group" && <ChatList chats={sampleChats} chatId={chatId}
+            handleDeleteChat={handleDeleteChat}
+            />}
             {selectedSection === "notifications" && <Notifications/>}
             {selectedSection === "profile" && <Profile/>}
           </Suspense>
