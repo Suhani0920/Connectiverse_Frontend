@@ -27,3 +27,13 @@ background-color:#f0f0f0;
 }
 
 `;
+
+export const InputBox=styled('input')`
+width:100%;
+height:100%;
+border:0;
+outline:0;
+padding: 0 3rem;
+border-radius:1.5rem;
+background-color:#f0f0f0;
+`;

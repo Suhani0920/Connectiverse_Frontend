@@ -7,6 +7,7 @@ import {
   Notifications as NotificationsIcon,
   Logout as LogoutIcon,
   AccountCircle as ProfileIcon,
+  Chat as ChatIcon,
 } from "@mui/icons-material";
 
 import { useNavigate ,useParams } from "react-router-dom";
@@ -15,20 +16,30 @@ import NewGroup from "../specific/NewGroup";
 import Notifications from "../specific/Notifications";
 import Profile from "../specific/Profile";
 import Search from "../specific/Search";
+
 import {sampleChats} from "../../constants/sampleData";
+import Chat from "../../pages/Chat";
 
 
 const AppLayout = (WrappedComponent) => {
+ 
+
   return (props) => {
     
     const { chatId } = useParams();
 
     const [selectedSection, setSelectedSection] = useState(""); // Track selected section
+    const [selectedChat, setSelectedChat] = useState(null);
     const navigate = useNavigate();
 
     const handleIconClick = (section) => {
       setSelectedSection(section);
     };
+
+    const handleChatClick = (chat) => {
+      setSelectedChat(chat); // Set the chat that was clicked
+    };
+    
 
     const logoutHandler = () => {
       console.log("Logging out...");
@@ -76,6 +87,11 @@ const AppLayout = (WrappedComponent) => {
             icon={<NotificationsIcon />}
             onClick={() => handleIconClick("notifications")}
           />
+          <IconBtn
+            title="Chat"
+            icon={<ChatIcon />}
+            onClick={() => handleIconClick("chat")}
+          />
            <IconBtn
             title="Profile"
             icon={<ProfileIcon />}
@@ -102,7 +118,7 @@ const AppLayout = (WrappedComponent) => {
             {selectedSection === "search" && <Search/>}
             {selectedSection === "newGroup" && <NewGroup/>}
             {selectedSection === "group" && <ChatList chats={sampleChats} chatId={chatId}
-            handleDeleteChat={handleDeleteChat}
+            handleDeleteChat={handleDeleteChat} setSelectedChat={handleChatClick}
             />}
             {selectedSection === "notifications" && <Notifications/>}
             {selectedSection === "profile" && <Profile/>}
@@ -120,11 +136,16 @@ const AppLayout = (WrappedComponent) => {
             alignItems: "center",
           }}
         >
-          <img 
-            src="https://tenor.com/bvRpn.gif" 
-            alt="GIF Animation"
-            style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
-          />
+          {selectedChat ? (
+            <Chat chat={selectedChat} />
+          ) : (
+            <img
+              src="https://tenor.com/bvRpn.gif"
+              alt="GIF Animation"
+              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+            />
+          )}
+
         </Grid>
       </Grid>
     );

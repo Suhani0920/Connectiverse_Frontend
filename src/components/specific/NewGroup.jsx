@@ -11,10 +11,15 @@ const NewGroup = () => {
   const groupName=useInputValidation("");
  
  const submitHandler=()=>{};
+
+ 
  
  
  
   const selectMemberHandler=(id)=>{
+
+    
+
     setSelectedMembers((prev)=>prev.includes(id)?prev.filter((i)=>i!==id):[...prev,id]);
    
   }
@@ -30,7 +35,7 @@ const NewGroup = () => {
                   user={user} 
                   key={user._id } 
                   handler={selectMemberHandler} 
-                 
+                  isAdded={selectedMembers.includes(user._id)}
                   />
                 ))
           }
