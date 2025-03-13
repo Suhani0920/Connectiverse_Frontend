@@ -37,7 +37,8 @@ const AppLayout = (WrappedComponent) => {
     };
 
     const handleChatClick = (chat) => {
-      setSelectedChat(chat); // Set the chat that was clicked
+      console.log("Chat Selected:", chat); 
+      setSelectedChat(chat); // Set the selected chat
     };
     
 
@@ -118,9 +119,10 @@ const AppLayout = (WrappedComponent) => {
             {selectedSection === "search" && <Search/>}
             {selectedSection === "newGroup" && <NewGroup/>}
             {selectedSection === "group" && <ChatList chats={sampleChats} chatId={chatId}
-            handleDeleteChat={handleDeleteChat} setSelectedChat={handleChatClick}
+            handleDeleteChat={handleDeleteChat} onChatSelect={handleChatClick}
             />}
             {selectedSection === "notifications" && <Notifications/>}
+            /*{selectedSection === "chat" && <Chat  />}
             {selectedSection === "profile" && <Profile/>}
           </Suspense>
         </Grid>
@@ -134,10 +136,12 @@ const AppLayout = (WrappedComponent) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            height: "100%",
+    flexDirection: "column",
           }}
         >
           {selectedChat ? (
-            <Chat chat={selectedChat} />
+            <Chat selectedChat={selectedChat} />
           ) : (
             <img
               src="https://tenor.com/bvRpn.gif"

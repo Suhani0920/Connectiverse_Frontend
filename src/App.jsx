@@ -14,8 +14,9 @@ const App = () => {
       <Suspense fallback={<LayoutLoaders/>}>
         <Routes>
           <Route  element={<ProtectRoute user={user} />} >
-          <Route path="/" element={<Home />} />
-          <Route path="/chat/:chatId" element={<Chat />} />
+          <Route path="/" element={<Home />}>
+      <Route path="chat/:chatId" element={<Chat />} /> {/* ✅ Nested Inside Home */}
+    </Route>
           <Route path="/group" element={<Group />} />
 
           </Route>

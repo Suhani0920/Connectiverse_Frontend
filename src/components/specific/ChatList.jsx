@@ -14,7 +14,7 @@ count:0,
 },
 ],
 handleDeleteChat,
-setSelectedChat, 
+onChatSelect, 
 
 })=>{
     return (
@@ -28,9 +28,9 @@ setSelectedChat,
                 
                 
                 return (
-                    <div key={_id} onClick={(e) => {
-                      e.preventDefault(); 
-                    setSelectedChat(data);}}>  {/* Click Event */}
+                    <div key={_id} onClick={() => {
+                     
+                      onChatSelect(data);}}>  
                       <Chatitem
                         index={index}
                         newMessageAlert={newMessage}
