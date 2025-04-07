@@ -50,6 +50,8 @@ const Chat = ({ selectedChat }) => {
               fontSize: "1rem", // Better text visibility
               padding: "0.5rem",
             }}
+            placeholder='Type a message...'
+            autoFocus
           />
           <IconButton>
             <SendIcon />

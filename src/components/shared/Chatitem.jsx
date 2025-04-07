@@ -30,7 +30,7 @@ import AvatarCard from './AvatarCard';
       gap:"1rem",
       alignItems:"center",
       padding:"1rem",
-      backgroundColor: sameSender ? "black" : "unset",
+      backgroundColor: sameSender ?"#CDC1FF" : "unset",
       color: sameSender ? "white" : "unset",
       borderBottom:"1px solid #f0f0f0",
       position:"relative",

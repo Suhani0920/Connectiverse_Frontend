@@ -32,13 +32,18 @@ const Notifications = () => {
 
 const NotificationItem=memo(({sender,_id,handler})=>{
   return (
-    <ListItem sx={{ display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'space-between' }} >
+    <ListItem sx={{ display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'space-between' ,width: "100%", // ensure it doesn't overflow
+      flexWrap: "wrap", 
+    }}
+      >
    <Stack 
      direction={"row"} 
      alignItems={"center"} 
      gap={1} 
      flexGrow={1}
-     
+     sx={{
+      minWidth: 1, // important for text truncation
+    }}
     >
     <Avatar/>
     <Typography
