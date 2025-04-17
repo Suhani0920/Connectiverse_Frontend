@@ -34,12 +34,12 @@ export const sampleMessage=[
   attachments:[
     {
       public_id:"asbsbsbs",
-      url:"https://images.app.goo.gl/1T9PDpZWwFCq4Wda8",
+      url:"https://images.app.goo.gl/rS5v5qyxCKWVGryF6",
   },
 
 ],
   content:"gadhe ka message aya",
-  _id:"8",
+  _id:"9",
   sender:{
     _id:"user._id",
     name:"narendra",

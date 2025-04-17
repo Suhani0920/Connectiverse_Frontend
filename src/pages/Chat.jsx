@@ -35,9 +35,10 @@ const Chat = ({ selectedChat }) => {
         }}
       >
         {
-          sampleMessage.map((message) => (
+          sampleMessage.map((i) => (
             <MessageComponent
-              message={message}
+              key={i._id}
+              message={i}
               user={user}
             />
           ))
