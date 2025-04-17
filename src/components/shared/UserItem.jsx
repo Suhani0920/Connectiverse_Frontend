@@ -15,7 +15,7 @@ const UserItem = ({user,handler,handlerIsLoading,isAdded=false}) => {
          width={"100%"}
          
         >
-        <Avatar/>
+        <Avatar />
         <Typography
         variant="body1"
         sx={{
