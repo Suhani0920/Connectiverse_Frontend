@@ -16,7 +16,7 @@ const Group = () => {
   };
   
   const handleMobileClose=()=>{
-    
+    setIsMobileMenuOpen(false);
   }
   const IconBtns=<>
 
@@ -25,7 +25,7 @@ const Group = () => {
       display:{
         xs:"block",
         sm:"none",
-        postion:"fixed",
+        position:"fixed",
       }
      }}
     >
@@ -67,13 +67,21 @@ const Group = () => {
 
       alignItems: "center",
       position:"relative",
-      padding:"1rem 3 rem",
+      padding:"1rem 3rem",
      }}>
       {IconBtns}
      </Grid>
-     <Drawer open={isMobileMenuOpen} onClose={handleMobileClose}></Drawer>
+     <Drawer open={isMobileMenuOpen} onClose={handleMobileClose}>heyy</Drawer>
     </Grid>
   );
 };
+
+const GroupList=({w="100%",myGroups=[],chatId})=>{
+  return (
+    <div>
+      Group List
+    </div>
+  )
+}
 
 export default Group
