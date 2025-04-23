@@ -16,7 +16,7 @@ import NewGroup from "../specific/NewGroup";
 import Notifications from "../specific/Notifications";
 import Profile from "../specific/Profile";
 import Search from "../specific/Search";
-
+import Group from "../../pages/Group";
 import {sampleChats} from "../../constants/sampleData";
 import Chat from "../../pages/Chat";
 
@@ -118,11 +118,11 @@ const AppLayout = (WrappedComponent) => {
             
             {selectedSection === "search" && <Search/>}
             {selectedSection === "newGroup" && <NewGroup/>}
-            {selectedSection === "group" && <ChatList chats={sampleChats} chatId={chatId}
-            handleDeleteChat={handleDeleteChat} onChatSelect={handleChatClick}
-            />}
+            {selectedSection === "group" && <Group/>}
+            
             {selectedSection === "notifications" && <Notifications/>}
-            /*{selectedSection === "chat" && <Chat  />}
+            {selectedSection === "chat" && <ChatList chats={sampleChats} chatId={chatId}
+            handleDeleteChat={handleDeleteChat} onChatSelect={handleChatClick}/>}
             {selectedSection === "profile" && <Profile/>}
           </Suspense>
         </Grid>
