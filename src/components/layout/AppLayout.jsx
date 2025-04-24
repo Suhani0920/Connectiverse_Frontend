@@ -46,7 +46,7 @@ const AppLayout = (WrappedComponent) => {
       console.log("Logging out...");
     };
 
-    const handleDeleteChat = (e,Id,groupChat) => {
+    const handleDeleteChat = (e,_id,groupChat) => {
 
       e.preventDefault();
       console.log("Deleting Chat...",_id ,groupChat);
