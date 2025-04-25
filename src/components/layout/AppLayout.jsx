@@ -25,7 +25,8 @@ const AppLayout = (WrappedComponent) => {
  
 
   return (props) => {
-    
+    const [selectedGroup, setSelectedGroup] = useState(null);
+
     const { chatId } = useParams();
 
     const [selectedSection, setSelectedSection] = useState(""); // Track selected section
@@ -118,7 +119,12 @@ const AppLayout = (WrappedComponent) => {
             
             {selectedSection === "search" && <Search/>}
             {selectedSection === "newGroup" && <NewGroup/>}
-            {selectedSection === "group" && <Group/>}
+            {selectedSection === "group" && (
+              <Group
+               onGroupSelect={(group) => setSelectedGroup(group)}
+               selectedGroupId={selectedGroup?._id}
+              />
+            )}
             
             {selectedSection === "notifications" && <Notifications/>}
             {selectedSection === "chat" && <ChatList chats={sampleChats} chatId={chatId}
@@ -140,15 +146,17 @@ const AppLayout = (WrappedComponent) => {
     flexDirection: "column",
           }}
         >
-          {selectedChat ? (
-            <Chat selectedChat={selectedChat} />
-          ) : (
-            <img
-              src="https://tenor.com/bvRpn.gif"
-              alt="GIF Animation"
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
-            />
-          )}
+          {selectedSection === "chat" && selectedChat ? (
+  <Chat selectedChat={selectedChat} />
+) : selectedSection === "group" && selectedGroup ? (
+  <Chat selectedChat={selectedGroup} />
+) : (
+  <img
+    src="https://tenor.com/bvRpn.gif"
+    alt="GIF Animation"
+    style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
+  />
+)}
 
         </Grid>
       </Grid>
