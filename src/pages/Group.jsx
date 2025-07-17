@@ -3,8 +3,10 @@ import { Box, Stack, Typography } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import AvatarCard from '../components/shared/AvatarCard';
 import { sampleChats } from '../constants/sampleData';
+import {Link} from '../components/styles/StyledComponents'
 
 const Group = ({ onGroupSelect, selectedGroupId }) => {
+  
   return (
     <Box height="100%" p="1rem">
       <GroupList
@@ -35,10 +37,21 @@ const GroupList = ({ myGroups = [], onGroupSelect, selectedGroupId }) => (
   </Stack>
 );
 
-const GroupListItem = memo(({ group, isSelected, onClick }) => {
-  const { name, avatar } = group;
+const GroupListItem = memo(({ group, isSelected, onClick, chatId }) => {
+  const { name, avatar ,_id } = group;
 
   return (
+    <Link
+     to={`?group=${_id}`}
+     onClick={(e) => {
+      if(chatId=== _id) {
+        e.preventDefault();
+        
+      }
+      
+      
+    }}
+    >
     <Box
       onClick={onClick}
       sx={{
@@ -63,6 +76,7 @@ const GroupListItem = memo(({ group, isSelected, onClick }) => {
         <Typography noWrap>{name}</Typography>
       </Stack>
     </Box>
+    </Link>
   );
 });
 
