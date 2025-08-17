@@ -7,7 +7,7 @@ import { useFileHandler, useInputValidation,useStrongPassword } from "6pp";
 import { usernameValidator} from "../../utils/validators"
 
 
-const isAdmin=false;
+const isAdmin=true;
 const AdminLogin = () => {
    const secretKey= useInputValidation("");
    const submitHandler = (e) => {
