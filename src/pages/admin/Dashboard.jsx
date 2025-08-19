@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminLayout from '../../components/layout/AdminLayout'
 import { Box, Container, Paper, Stack ,Typography} from '@mui/material'
-import { AdminPanelSettings, Notifications } from '@mui/icons-material'
+import { AdminPanelSettings, Group, Notifications, Person } from '@mui/icons-material'
 import moment from 'moment'
 import { CurveButton, SearchField } from '../../components/styles/StyledComponents'
 
@@ -38,7 +38,15 @@ const Dashboard = () => {
   </Stack>
  </Paper>
 
- const Widgets=<></>
+ const Widgets=<Stack
+ direction={{
+  xs:"column",
+  sm:"row"
+ }}
+ >
+<Widget title={"Users"}/>
+
+ </Stack>
   return (
     <AdminLayout>
       <Container component={"main"}>
@@ -55,7 +63,8 @@ const Dashboard = () => {
         padding:"2rem 3.5rem",
         borderRadius:"1rem",
         width:"100%",
-        maxWidth:"45rem"
+        maxWidth:"45rem",
+        height:"25rem",
        }}
        >
         <Typography margin={"2rem 0"} variant="h4">Last Messages</Typography>
@@ -74,10 +83,24 @@ const Dashboard = () => {
         maxWidth:"25rem",
         width:"100%",
         position:"relative",
+        height:"25rem",
 
        }}
        >
-        Dougnut Chart
+        {"Dougnut Chart"}
+        <Stack
+        position={"absolute"}
+        direction={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        spacing={"0.5rem"}
+        width={"100%"}
+        height={"100%"}
+        >
+         <Group/> <Typography>Vs</Typography>
+         <Person/>
+
+        </Stack>
        </Paper>
        </Stack>
        {
@@ -85,7 +108,10 @@ const Dashboard = () => {
        }
       </Container>
     </AdminLayout>
-  )
-}
+  );
+};
+const Widget = ({title,value,Icon}) => {
+ <Paper>{title}</Paper>;
+};
 
 export default Dashboard
