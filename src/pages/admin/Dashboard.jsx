@@ -58,9 +58,26 @@ const Dashboard = () => {
         maxWidth:"45rem"
        }}
        >
-        <Typography >Last Messages</Typography>
+        <Typography margin={"2rem 0"} variant="h4">Last Messages</Typography>
         {"Chat"}
       
+       </Paper>
+       <Paper
+       elevation={3}
+       sx={{
+        padding:"1rem",
+        borderRadius:"1rem",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        width:{xs:"100%", sm:"50%"},
+        maxWidth:"25rem",
+        width:"100%",
+        position:"relative",
+
+       }}
+       >
+        Dougnut Chart
        </Paper>
        </Stack>
        {
