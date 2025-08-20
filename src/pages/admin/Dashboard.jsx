@@ -43,8 +43,14 @@ const Dashboard = () => {
   xs:"column",
   sm:"row"
  }}
+ spacing="2rem"
+ justifyContent={"space-between"}
+ alignItems={"center"}
+ margin={"2rem 0"}
  >
-<Widget title={"Users"}/>
+     <Widget title={"Users"} value={34} Icon={Person}/>
+     <Widget title={"Chats"} value={3}/>
+     <Widget title={"Messages"} value={64}/>
 
  </Stack>
   return (
@@ -111,7 +117,15 @@ const Dashboard = () => {
   );
 };
 const Widget = ({title,value,Icon}) => {
- <Paper>{title}</Paper>;
+ <Paper>
+  <Stack alignItems={"center"} spacing={"1rem"}>
+    <Typography>{value}</Typography>
+    <Stack>
+      {Icon}
+     <Typography>{Title}</Typography> 
+    </Stack>
+  </Stack>
+  </Paper>;
 };
 
 export default Dashboard
