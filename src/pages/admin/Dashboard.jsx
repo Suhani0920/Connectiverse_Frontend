@@ -87,7 +87,7 @@ const Dashboard = () => {
         alignItems:"center",
         width:{xs:"100%", sm:"50%"},
         maxWidth:"25rem",
-        width:"100%",
+       
         position:"relative",
         height:"25rem",
 
@@ -116,34 +116,39 @@ const Dashboard = () => {
     </AdminLayout>
   );
 };
-const Widget = ({title,value,Icon}) => {
- <Paper
- sx={{
-  padding:"2rem",
-  margin:"2rem 0",
-  borderRadius:"1rem",
-  width:"20rem"
- }}
- >
-  <Stack alignItems={"center"} spacing={"1rem"}>
-    <Typography
-    sx={{
-      color:"rgba(0,0,0,0.7)",
-      borderRadius:"50%",
-      border:`5px solid rgba(0,0,0,0.9)`,
-      width:"5rem",
-      height:"5rem",
-      display:"flex",
-      alignItems:"center",
-      justifyContent:"center"
-    }}
-    >{value}</Typography>
-    <Stack>
-      {Icon}
-     <Typography>{title}</Typography> 
-    </Stack>
-  </Stack>
-  </Paper>;
+const Widget = ({ title, value, Icon }) => {
+  return (
+    <Paper
+      elevation={3}
+      sx={{
+        padding: "2rem",
+        margin: "2rem 0",
+        borderRadius: "1rem",
+        width: "20rem"
+      }}
+    >
+      <Stack alignItems={"center"} spacing={"1rem"}>
+        <Typography
+          sx={{
+            color: "rgba(0,0,0,0.7)",
+            borderRadius: "50%",
+            border: `5px solid rgba(0,0,0,0.9)`,
+            width: "5rem",
+            height: "5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          {value}
+        </Typography>
+        <Stack alignItems={"center"} spacing={"0.5rem"}>
+          {Icon}
+          <Typography>{title}</Typography>
+        </Stack>
+      </Stack>
+    </Paper>
+  );
 };
 
 export default Dashboard
