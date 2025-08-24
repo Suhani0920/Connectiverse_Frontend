@@ -2,6 +2,7 @@ import {  DialogTitle, InputAdornment, List, Stack,TextField } from '@mui/materi
 import React, { useState } from 'react'
 import {useInputValidation} from "6pp";
 import {Search as SearchIcon} from "@mui/icons-material";
+
 import { sampleUsers } from '../../constants/sampleData';
 import UserItem from '../shared/UserItem';
 
@@ -48,5 +49,7 @@ const Search = () => {
    
   )
 }
+
+
 
 export default Search
